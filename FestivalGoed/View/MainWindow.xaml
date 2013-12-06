@@ -1,0 +1,56 @@
+﻿<Window x:Class="FestivalGoed.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:FestivalGoed.ViewModel"
+        xmlns:v="clr-namespace:FestivalGoed.View"
+        Title="MainWindow" Height="780" Width="1260" WindowState="Maximized">
+    
+    <Window.DataContext>
+        <vm:ApplicationVM/>
+    </Window.DataContext>
+    
+    
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:MainPageVM}">
+            <v:MainPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ContactPersonenVM}">
+            <v:ContactPersonen/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:BandsVM}">
+            <v:Bands/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LineUpVM}">
+            <v:LineUp/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TicketsVM}">
+            <v:Tickets/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:BeherenVM}">
+            <v:Beheren/>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="MijnMenuTemplate">
+            <WrapPanel/>
+        </ItemsPanelTemplate>
+    </Window.Resources>
+    
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="277*"/>
+        </Grid.RowDefinitions>
+        <ItemsControl ItemsSource="{Binding Pages}" ItemsPanel="{StaticResource MijnMenuTemplate}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Name}" Command="{Binding
+                        DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type
+                        Window}}}" CommandParameter="{Binding}" Width="100" Height="35" Margin="10, 7"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <ContentControl Grid.Row="1" Content="{Binding CurrentPage}" Margin="10"/>
+
+    </Grid>
+</Window>

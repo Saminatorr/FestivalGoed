@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="FestivalGoed.View.Bands"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:m="clr-namespace:FestivalGoed.Model"
+             xmlns:vm="clr-namespace:FestivalGoed.ViewModel"
+             d:DesignHeight="730" d:DesignWidth="1260">
+    <Grid>
+        <Grid.DataContext>
+            <vm:BandsVM/>
+        </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="32*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox DisplayMemberPath="Name" ItemsSource="{Binding Bands}" SelectedItem="{Binding SelectedBand}" Grid.Row="0" Grid.Column="0" Style="{StaticResource ListboxLayout}"></ListBox>
+        
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Button Command="{Binding DeleteBandCommand}" Content="Verwijderen" Style="{StaticResource ButtonLayout}"/>
+            <Button Content="Aanpassen" Style="{StaticResource ButtonLayout}"/>
+        </StackPanel>
+            
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label Style="{StaticResource LabelLayout}" >Naam</Label>
+            <Label Style="{StaticResource LabelLayout}">Genre</Label>
+            <Label Style="{StaticResource LabelLayout}">Omschrijving</Label>
+            <Label Style="{StaticResource LabelLayout}">Facebook</Label>
+            <Label Style="{StaticResource LabelLayout}">Twitter</Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Button Content="Zoeken" Style="{StaticResource ButtonLayout}"/>
+            <TextBox Style="{StaticResource TextBoxLayout}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <TextBox Text="{Binding SelectedBand.Name}" Style="{StaticResource TextBoxLayout}"/>
+            <ComboBox Style="{StaticResource ComboBoxLayout}"/>
+            <TextBox Text="{Binding SelectedBand.Description}" Style="{StaticResource TextBoxLayout}"/>
+            <TextBox Text="facebook.com" Style="{StaticResource TextBoxLayout}"/>
+            <TextBox Text="twitter.com" Style="{StaticResource TextBoxLayout}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Button Command="{Binding AddBandCommand}" Content="Toevoegen" Style="{StaticResource ButtonLayout}"/>
+            <Button Command="{Binding ClearFields}" Content="Velden leegmaken" Style="{StaticResource ButtonLayout}"/>
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

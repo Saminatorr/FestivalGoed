@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="FestivalGoed.View.ContactPersonen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:m="clr-namespace:FestivalGoed.Model"
+             xmlns:vm="clr-namespace:FestivalGoed.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="730" d:DesignWidth="1260">
+    
+    <!--<UserControl.DataContext>
+        <m:ContactpersonType/>
+    </UserControl.DataContext>-->
+    
+    <UserControl.Resources>
+        <m:ContactpersonType x:Key="ContactTypen"/>
+    </UserControl.Resources>
+    
+    <Grid Margin="10" Style="{StaticResource GridLayout}">
+        <Grid.DataContext>
+            <vm:ContactPersonenVM/>
+        </Grid.DataContext>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="365"/>
+            <RowDefinition Height="365"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="420*"/>
+            <ColumnDefinition Width="420*"/>
+            <ColumnDefinition Width="420*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--<DataGrid Grid.Column="0" Margin="10" ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naam" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Bedrijf" Binding="{Binding Company}"/>
+                
+            </DataGrid.Columns>
+            
+        </DataGrid>-->
+
+        <ListBox Margin="10" DisplayMemberPath="Name" ItemsSource="{Binding Contacten}" SelectedItem="{Binding SelectedContact}" Style="{StaticResource ListboxLayout}"/>
+
+        <TextBlock x:Name="txbNaamContact" Grid.Column="1" Grid.Row="0" Height="35" Margin="10,10,10,320" Text="Naam:" Style="{StaticResource TextBlockLayout}"/>
+        <TextBlock x:Name="txbBedrijfContact" Grid.Column="1" Grid.Row="0" Height="35" Margin="10,10,10,235" Text="Bedrijf:" Style="{StaticResource TextBlockLayout}"/>
+        <TextBlock x:Name="txbAdresContact" Grid.Column="1" Grid.Row="0" Height="35" Margin="10,10,10,150" Text="Adres:"  Style="{StaticResource TextBlockLayout}"/>
+        <TextBlock x:Name="txbEmailContact" Grid.Column="1" Grid.Row="0" Height="35" Margin="10,10,10,65" Text="Email:"  Style="{StaticResource TextBlockLayout}"/>
+        <TextBlock x:Name="txbTelefoonContact" Grid.Column="1" Grid.Row="0" Height="35" Margin="10,10,10,-20" Text="Telefoon:"  Style="{StaticResource TextBlockLayout}"/>
+        <TextBlock x:Name="txbTaakContact" Grid.Column="1" Grid.Row="0" Height="35" Margin="10,10,10,-105" Text="Taak:"  Style="{StaticResource TextBlockLayout}"/>
+        <TextBlock x:Name="txbOpmerkingenContact" Grid.Column="1" Grid.Row="0" Height="35" Margin="10,10,10,-190" Text="Opmerkingen:" Style="{StaticResource TextBlockLayout}"/>
+
+        <TextBox x:Name="txtNaamContact" Grid.Column="2" Grid.Row="0" Height="35" Margin="10,10,10,320" Text="{Binding SelectedContact.Name}" Padding="7" FontSize="15"/>
+        <TextBox x:Name="txtBedrijfContact" Grid.Column="2" Grid.Row="0" Height="35" Margin="10,10,10,235" Text="{Binding SelectedContact.Company}" Padding="7" FontSize="15"/>
+        <TextBox x:Name="txtAdresContact" Grid.Column="2" Grid.Row="0" Height="35" Margin="10,10,10,150" Text="{Binding SelectedContact.City}" Padding="7" FontSize="15"/>
+        <TextBox x:Name="txtEmailContat" Grid.Column="2" Grid.Row="0" Height="35" Margin="10,10,10,65" Text="{Binding SelectedContact.Email}" Padding="7" FontSize="15"/>
+        <TextBox x:Name="txtTelefoonContact" Grid.Column="2" Grid.Row="0" Height="35" Margin="10,10,10,-20" Text="{Binding SelectedContact.Phone}" Padding="7" FontSize="15"/>
+        <ComboBox x:Name="cboTypeContact" Grid.Column="2" Grid.Row="0" Height="30" Margin="10,10,10,-105"
+                  ItemsSource="{Binding Source={StaticResource ContactTypen}, Path=ContactTypes}"
+                  DisplayMemberPath="Name"
+                  SelectedItem="{Binding ContactTypen.JobRole}"
+                  SelectedIndex="{Binding SelectedContact.Id}"
+                  SelectedValuePath="Id"
+                  />
+        
+        <!--DisplayMemberPath="Name"
+                  SelectedItem="{Binding JobRole}"
+                  SelectedValuePath="Id"
+                  SelectedValue="{Binding JobRole.Id}"-->
+
+        <TextBox x:Name="txtOpmerkingenContact" Grid.Column="2" Grid.Row="0" Height="35" Margin="10,10,10,-190" Text="{Binding SelectedContact.Opmerkingen}" Padding="7" FontSize="15"/>
+
+
+        <Button x:Name="btnVerwijderenContact" Grid.Row="1" Height="35" Margin="10,10,10,320" Content="Verwijderen" Style="{StaticResource ButtonLayout}"
+                Command="{Binding DeleteShopCommand}"
+                />
+        <Button x:Name="btnAanpassenContact" Grid.Row="1" Height="35" Margin="10,10,10,235" Content="Aanpassen" Style="{StaticResource ButtonLayout}"/>
+
+        <Button x:Name="btnZoekenContact" Grid.Column="1" Grid.Row="1" Height="35" Margin="10,10,10,320" Content="Zoeken" Style="{StaticResource ButtonLayout}"/>
+        <TextBox x:Name="txtZoekenContact" Grid.Column="1" Grid.Row="1" Height="35" Margin="10,10,10,235" Text="Zoeken" Padding="7" FontSize="15"/>
+
+
+        <Button x:Name="btnToevoegenContact" Grid.Column="2" Grid.Row="1" Height="35" Margin="10,10,10,320" Content="Toevoegen" Style="{StaticResource ButtonLayout}"
+                Command="{Binding AddContactCommand}"
+                >            
+        </Button>
+        <Button x:Name="btnClearFields" Grid.Column="2" Grid.Row="1" Height="35" Margin="10,53,10,278" Content="ClearFields" Style="{StaticResource ButtonLayout}"
+                Command="{Binding ClearFields}"
+                >
+        </Button>
+    </Grid>
+</UserControl>

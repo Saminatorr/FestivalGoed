@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="FestivalGoed.View.Beheren"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="730" d:DesignWidth="1260">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="273*"/>
+            <RowDefinition Height="457*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid Grid.Column="0" Grid.Row="0" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
+                <Label Style="{StaticResource LabelLayout}" Margin="10,10,333,0">Contact Type</Label>
+                <ListBox DisplayMemberPath="Name" ItemsSource="{Binding Genres}" SelectedItem="{Binding SelectedGenre}" Height="157" Margin="10,10,333,0" />
+
+            </StackPanel>
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="1">
+                <Label Style="{StaticResource LabelLayout}">Naam:</Label>
+                <TextBox Text="{Binding SelectedGenre.Name}" Style="{StaticResource TextBoxLayout}"/>
+                <Button Command="{Binding AddGenreCommand}" Style="{StaticResource ButtonLayout}" Margin="10,10,10,0" Content="Toevoegen"/>
+                <Button Style="{StaticResource ButtonLayout}" Margin="10,10,10,0" Content="Aanpassen"/>
+                <Button Command="{Binding DeleteGenreCommand}" Style="{StaticResource ButtonLayout}" Margin="10" Content="Verwijderen"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="0" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
+                <Label Style="{StaticResource LabelLayout}" Margin="10,10,333,0">Genre</Label>
+                <ListBox Height="157" Margin="10,10,333,0" />
+            </StackPanel>
+            
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="1">
+                <Label Style="{StaticResource LabelLayout}">Naam:</Label>
+                <TextBox Text="Naam" Style="{StaticResource TextBoxLayout}"/>
+                <Button Style="{StaticResource ButtonLayout}" Margin="10,10,10,0" Content="Toevoegen"/>
+                <Button Style="{StaticResource ButtonLayout}" Margin="10,10,10,0" Content="Aanpassen"/>
+                <Button Style="{StaticResource ButtonLayout}" Margin="10" Content="Verwijderen"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
+                <Label Style="{StaticResource LabelLayout}" Margin="10,10,333,0">Podia</Label>
+                <ListBox Height="349" Margin="10,10,333,0" />
+
+            </StackPanel>
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="1">
+                <Label Style="{StaticResource LabelLayout}">Naam:</Label>
+                <TextBox Text="Naam" Style="{StaticResource TextBoxLayout}"/>
+                <Button Style="{StaticResource ButtonLayout}" Margin="10,10,10,0" Content="Toevoegen"/>
+                <Button Style="{StaticResource ButtonLayout}" Margin="10,10,10,0" Content="Aanpassen"/>
+                <Button Style="{StaticResource ButtonLayout}" Margin="10" Content="Verwijderen"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
+                <Label Style="{StaticResource LabelLayout}" Margin="10,10,333,0">Tickets</Label>
+                <ListBox Height="349" Margin="10,10,333,0" />
+
+            </StackPanel>
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="1">
+                <Label Style="{StaticResource LabelLayout}">Naam:</Label>
+                <TextBox Text="Naam" Style="{StaticResource TextBoxLayout}"/>
+                <Label Style="{StaticResource LabelLayout}">Prijs:</Label>
+                <TextBox Text="€100,00" Style="{StaticResource TextBoxLayout}"/>
+                <Label Style="{StaticResource LabelLayout}">Aantal:</Label>
+                <TextBox Text="80" Style="{StaticResource TextBoxLayout}"/>
+                <Button Style="{StaticResource ButtonLayout}" Margin="10,10,10,0" Content="Toevoegen"/>
+                <Button Style="{StaticResource ButtonLayout}" Margin="10,10,10,0" Content="Aanpassen"/>
+                <Button Style="{StaticResource ButtonLayout}" Margin="10" Content="Verwijderen"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</UserControl>
